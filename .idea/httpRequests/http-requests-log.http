@@ -1,0 +1,10 @@
+GET http://localhost:4001
+User-Agent: IntelliJ HTTP Client/GoLand 2024.2.3
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+content-length: 0
+
+<> 2024-10-31T115709.200.txt
+
+###
+
