@@ -1,0 +1,16 @@
+{
+  "editor.fontFamily": "JetBrainsMono Nerd Font Mono, Monaco, 'Courier New', monospace",
+  "editor.fontSize": 15,
+  "editor.cursorStyle": "line",
+  "editor.lineHeight": 1.15,
+  "workbench.sideBar.location": "left",
+  "workbench.tree.indent": 24,
+  "explorer.compactFolders": false,
+  "editor.renderWhitespace": "boundary",
+  "editor.minimap.showSlider": "always",
+  "launch": {
+
+    "configurations": [],
+    "compounds": []
+  }
+}
