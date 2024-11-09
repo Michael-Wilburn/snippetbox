@@ -10,9 +10,10 @@ and share snippets of text — a bit like Pastebin or GitHub’s Gists.
 | ANY        | /static/           | http.FileServer | Serve a specific static file |
 
 # Test the endpoint throw the terminal.
-$ curl -i -X GET  http://localhost:4000/
-$ curl -i -X POST http://localhost:4000/snippet/create
-$ curl -i -X GET  http://localhost:4000/snippet/view?id=123.
+* $ curl -i -X GET  http://localhost:4000/
+* $ curl -i -X POST http://localhost:4000/snippet/create
+* $ curl -i -X GET  http://localhost:4000/snippet/view?id=123.
+* $ curl -iL -X POST http://localhost:4000/snippet/create
 
 
 - Using the double arrow >> will append to an existing file, instead of truncating it
