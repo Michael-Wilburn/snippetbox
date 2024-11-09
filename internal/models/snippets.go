@@ -40,7 +40,7 @@ func (m *SnippetModel) Insert(title string, content string, expires int) (int, e
 
 }
 
-func (m *SnippetModel) Get(id uint) (*Snippet, error) {
+func (m *SnippetModel) Get(id int) (*Snippet, error) {
 	// Write the SQL statement we want to execute. Again, I've split it over two
 	// lines for readability.
 	stmt := `SELECT id, title, content, created, expires FROM snippets WHERE expires > UTC_TIMESTAMP() AND id = ?`
@@ -59,7 +59,7 @@ func (m *SnippetModel) Get(id uint) (*Snippet, error) {
 	// to row.Scan are *pointers to the place you want to copy the data into,
 	// and the number of arguments must be exactly the same as the number of
 	// columns returned by your statement.
-	err := row.Scan(&s.ID, &s.Content, &s.Created, &s.Expires)
+	err := row.Scan(&s.ID, &s.Title, &s.Content, &s.Created, &s.Expires)
 	if err != nil {
 		// If the query returns no rows, the row.Scan() will retunr a
 		// sql.ErrNoRows error. We use the error.Is() function check for that
