@@ -8,7 +8,7 @@ and share snippets of text — a bit like Pastebin or GitHub’s Gists.
 | GET        | /snippet/view/:id | snippetView     | Display a specific snippet                   |
 | GET        | /snippet/create   | snippetCreate   | Displa a HTML form for crating a new snippet |
 | POST       | /snippet/create   | snippetCreate   | Create a new snippet                         |
-| GET        | /static/          | http.FileServer | Serve a specific static file                 |
+| GET        | /static/*filepath | http.FileServer | Serve a specific static file                 |
 
 # Test the endpoint throw the terminal.
 * $ curl -i -X GET  http://localhost:4000/
