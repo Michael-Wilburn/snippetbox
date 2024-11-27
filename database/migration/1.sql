@@ -60,3 +60,4 @@ CREATE TABLE users (
  created DATETIME NOT NULL
 );
 ALTER TABLE users ADD CONSTRAINT users_uc_email UNIQUE (email);
+
