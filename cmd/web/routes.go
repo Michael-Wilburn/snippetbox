@@ -3,6 +3,7 @@ package main
 import (
 	"net/http"
 
+	"github.com/Michael-Wilburn/snippetbox/ui"
 	"github.com/julienschmidt/httprouter"
 	"github.com/justinas/alice"
 )
@@ -13,8 +14,21 @@ func (app *application) routes() http.Handler {
 		app.notFound(w)
 	})
 
-	fileServer := http.FileServer(http.Dir("./ui/static/"))
-	router.Handler(http.MethodGet, "/static/*filepath", http.StripPrefix("/static", fileServer))
+	// fileServer := http.FileServer(http.Dir("./ui/static/"))
+	// router.Handler(http.MethodGet, "/static/*filepath", http.StripPrefix("/static", fileServer))
+
+	// Take the ui.Files embedded filesystem and convert it to a http.FS type so
+	// that it satisfies the http.FileSystem interface. We then pass that to the
+	// http.FileServer() function to create the file server handler.
+	fileServer := http.FileServer(http.FS(ui.Files))
+
+	// Our static files are contained in the "static" folder of the ui.Files
+	// embedded filesystem. So, for example, our CSS styleshet is located at
+	// "static/css/main.css". This mean that we now longer need to strip the
+	// prefix form the URL -- any request that start with /static/ can
+	// just be passed directly to the file server and corresponding static
+	// file will be served(so long as it exits)
+	router.Handler(http.MethodGet, "/static/*filepath", fileServer)
 
 	// Use the nosurf middleware on all our 'dynamic' routes.
 	// Unprotected application routes using the "dynamic" middleware chain.
