@@ -28,7 +28,7 @@ func (app *application) routes() http.Handler {
 	// prefix form the URL -- any request that start with /static/ can
 	// just be passed directly to the file server and corresponding static
 	// file will be served(so long as it exits)
-	router.Handler(http.MethodGet, "/static/*filepath", fileServer)
+	router.Handler(http.MethodGet, "/static/*filepath", cacheControlMiddleware(fileServer))
 
 	// Use the nosurf middleware on all our 'dynamic' routes.
 	// Unprotected application routes using the "dynamic" middleware chain.

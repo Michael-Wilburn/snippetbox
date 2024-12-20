@@ -116,3 +116,11 @@ func (app *application) authenticated(next http.Handler) http.Handler {
 
 	})
 }
+
+func cacheControlMiddleware(next http.Handler) http.Handler {
+	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		// Configurar caché para archivos estáticos
+		w.Header().Set("Cache-Control", "public, max-age=31536000") // Cache de 1 año
+		next.ServeHTTP(w, r)
+	})
+}

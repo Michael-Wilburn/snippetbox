@@ -3,8 +3,6 @@ package main
 import (
 	// New import
 
-	"crypto/tls"
-	"crypto/x509"
 	"database/sql"
 	"flag"
 	"html/template"
@@ -18,7 +16,6 @@ import (
 	"github.com/alexedwards/scs/v2"
 	"github.com/go-playground/form"
 
-	"github.com/go-sql-driver/mysql"
 	_ "github.com/go-sql-driver/mysql"
 )
 
@@ -101,17 +98,17 @@ func openDB(dsn string) (*sql.DB, error) {
 	return db, nil
 }
 
-func (app *application) init() {
-	rootCertPool := x509.NewCertPool()
-	pem, err := os.ReadFile("database/cert/ca.pem")
-	if err != nil {
-		app.errorLog.Fatalf("Failed to read CA certificate file at 'database/cert/ca.pem': %v", err)
-	}
-	if !rootCertPool.AppendCertsFromPEM(pem) {
-		app.errorLog.Fatal("Failed to add CA certificate to the certificate pool")
-	}
+// func (app *application) init() {
+// 	rootCertPool := x509.NewCertPool()
+// 	pem, err := os.ReadFile("database/cert/ca.pem")
+// 	if err != nil {
+// 		app.errorLog.Fatalf("Failed to read CA certificate file at 'database/cert/ca.pem': %v", err)
+// 	}
+// 	if !rootCertPool.AppendCertsFromPEM(pem) {
+// 		app.errorLog.Fatal("Failed to add CA certificate to the certificate pool")
+// 	}
 
-	mysql.RegisterTLSConfig("custom", &tls.Config{
-		RootCAs: rootCertPool,
-	})
-}
+// 	mysql.RegisterTLSConfig("custom", &tls.Config{
+// 		RootCAs: rootCertPool,
+// 	})
+// }
